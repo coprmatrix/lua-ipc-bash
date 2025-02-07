@@ -1,0 +1,30 @@
+<services>
+    <service name="obs_scm">
+        <param name="filename">ipc-bash</param>
+        <param name="url">https://github.com/huakim/lua-ipc-bash</param>
+        <param name="scm">git</param>
+        <param name="revision">scm-1</param>
+        <param name="without-version">enable</param>
+    </service>
+    <service name="lua2pack_generate" mode="buildtime">
+        <param name="rockspec">glob://./ipc-bash/*.rockspec</param>
+        <param name="template">rock.rockspec</param>
+        <param name="luacode">filename=package..'-'..version..'.rockspec'</param>
+    </service>
+    <service name="lua2pack_generate" mode="buildtime">
+        <param name="rockspec">glob://./*.rockspec</param>
+        <param name="template">obs.obsinfo</param>
+    </service>
+    <service name="lua2pack_generate" mode="buildtime">
+        <param name="rockspec">glob://./*.rockspec</param>
+        <param name="template">generic.spec</param>
+        <param name="luacode">
+add_requires={'ksh'}
+        </param>
+    </service>
+    <service name="tar" mode="buildtime"/>
+    <service name="recompress" mode="buildtime">
+        <param name="file">*.tar</param>
+        <param name="compression">gz</param>
+    </service>
+</services>
