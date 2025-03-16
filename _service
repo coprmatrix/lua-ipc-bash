@@ -19,7 +19,8 @@
         <param name="rockspec">glob://./*.rockspec</param>
         <param name="template">generic.spec</param>
         <param name="luacode">
-add_requires={'ksh'}
+add_requires={'(dash or bash or zsh or sh or tcsh or ksh)'}
+noarch=true
         </param>
     </service>
     <service name="tar" mode="buildtime"/>
